@@ -11,6 +11,12 @@ function App() {
     setRandomNum(Math.floor(Math.random() * maxVal) + minVal);
   };
 
+  const handler = (event, callback) => {
+    if (!isNaN(Number(event.target.value))) {
+      callback(Number(event.target.value));
+    }
+  };
+
   return (
     <div className="App">
       <div className={styles.wrapper}>
@@ -22,17 +28,15 @@ function App() {
             <div className={styles.inputContainer}>
               <p>Min number:</p>
               <input
-                type="number"
                 value={minVal}
-                onChange={(event) => setMinVal(+event.target.value)}
+                onChange={(event) => handler(event, setMinVal)}
               />
             </div>
             <div className={styles.inputContainer}>
               <p>Max number:</p>
               <input
-                type="number"
                 value={maxVal}
-                onChange={(event) => setMaxVal(+event.target.value)}
+                onChange={(event) => handler(event, setMaxVal)}
               />
             </div>
           </div>
